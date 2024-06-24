@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { ModalBody, ModalFooter, ModalHeader, Modal } from "reactstrap";
+import { emitter } from "../../utils/emitter"
 
 class ModalUser extends Component {
   constructor(props) {
@@ -12,11 +13,25 @@ class ModalUser extends Component {
       firstName: '',
       lastName: '',
       address: ''
-    };
+    }
+
+    this.listenToEmitter();
+  }
+
+  listenToEmitter() {
+    emitter.on('EVENT_CLEAR_MODAL_DATA', () => {
+      //reset state
+      this.setState({
+        email: '',
+        password: '',
+        firstName: '',
+        lastName: '',
+        address: ''
+      })
+    })
   }
 
   componentDidMount() {
-
   }
 
   toggle = () => {
@@ -58,7 +73,7 @@ class ModalUser extends Component {
 
   handleAddNewUser = () => {
     let isValid = this.checkValideInput();
-    if (isValid) {
+    if (isValid === true) {
       // gọi API create modle
       this.props.createNewUser(this.state, 'abc');
     }
@@ -94,7 +109,7 @@ class ModalUser extends Component {
             <div className="input-container">
               <label>Password</label>
               <input type="password"
-                onChange={(event) => { this.handleOnchangeInput(event, "passworld") }} className="form-control"
+                onChange={(event) => { this.handleOnchangeInput(event, "password") }} className="form-control"
                 value={this.state.password} />
             </div>
             <div className="input-container">
