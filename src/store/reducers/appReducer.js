@@ -32,7 +32,7 @@ const appReducer = (state = initialState, action) => {
                 }
             }
 
-        case actionTypes.CHANGE_LANGUEGE:
+        case actionTypes.CHANGE_LANGUAGE:
             console.log('hoi code tui nha', action)
             return {
                 ...state,
