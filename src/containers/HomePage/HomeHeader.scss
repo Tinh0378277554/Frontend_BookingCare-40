@@ -63,7 +63,9 @@
                 cursor: pointer;
 
                 &.active {
-                    color: orange;
+                    span {
+                        color: orange;
+                    }
                 }
             }
 
