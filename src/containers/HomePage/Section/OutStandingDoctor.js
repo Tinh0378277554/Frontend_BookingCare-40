@@ -91,9 +91,9 @@ class OutStandingDoctor extends Component {
 
                 </div>
             </div>
-        );
+        )
     }
-}
+};
 
 const mapStateToProps = (state) => {
     return {
